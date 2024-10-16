@@ -5,3 +5,6 @@ global using Netflixs2.Web.Helpers;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Net;
 global using System.Text.Json;
+global using MediatR;
+global using Netflixs2.Domain.Interfaces;
+global using Netflixs2.Application.Features;

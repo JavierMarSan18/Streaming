@@ -38,7 +38,9 @@ public class ExceptionMiddlewareHandler(RequestDelegate next)
     private Task HandleExceptionAsync(HttpContext context, Exception ex)
     {
         context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError +1;
+        var logger = context.RequestServices.GetRequiredService<ILogger<ExceptionMiddlewareHandler>>();
+        logger.LogError($"Netflixs2 internal Server Error: {ex} {ex.Message}");
         return context.Response.WriteAsync(new ErrorDetails
         (
             context.Response.StatusCode, 

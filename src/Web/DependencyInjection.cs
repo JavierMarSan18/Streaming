@@ -8,6 +8,13 @@ public static class DependencyInjection
         services.AddHealthChecks();
         services.AddConnections();
         services.AddEndpointsApiExplorer();
+        services.AddGraphQLServer()
+            .RegisterService<IMediator>()
+            .AddNetflixs2Types()
+            .AllowIntrospection(true)
+            .AddUploadType()
+            .ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
+            .InitializeOnStartup();
         return services;
     }
 }
