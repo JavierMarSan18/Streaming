@@ -1,7 +1,3 @@
-
-using System.Net;
-using System.Net.Sockets;
-
 namespace Netflixs2.Application.Features;
 
 public record TransmitVideo(string FilePath, string DestinationIPAddress, int DestinationPort) : IRequest<Netflixs2Result<bool>>;

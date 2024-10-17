@@ -10,8 +10,8 @@ public class LocalFileStorageService : IFileStorageService
         if (!Directory.Exists(_uploadPath))
             Directory.CreateDirectory(_uploadPath);
         var fileExtension = Path.GetExtension(fileName);
-        var onlyFileName = Path.GetFileNameWithoutExtension(fileName);
-        var filePath = Path.Combine(_uploadPath, $"{onlyFileName}-{Guid.NewGuid()}{fileExtension}").Replace(" ", "_");
+        var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName).Replace(" ", "_");
+        var filePath = Path.Combine(_uploadPath, $"{fileNameWithoutExtension}-{Guid.NewGuid()}{fileExtension}");
         using var fileStream = File.Create(filePath);
         stream.Seek(0, SeekOrigin.Begin);
         await stream.CopyToAsync(fileStream);
