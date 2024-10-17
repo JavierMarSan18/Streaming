@@ -17,4 +17,9 @@ public class LocalFileStorageService : IFileStorageService
         await stream.CopyToAsync(fileStream);
         return filePath;
     }
+
+    public Stream GetFile(string filePath)
+    {
+        return File.OpenRead(filePath);
+    }
 }
